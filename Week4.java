@@ -1,10 +1,6 @@
 package ProjectsBackEnd;
 
-import java.util.Scanner;
-
 public class Week4 {
-	
-	public static Scanner s = new Scanner(System.in);
 	
 	public static void main(String[] args) {
 		
@@ -96,13 +92,13 @@ public class Week4 {
 		//it is currently set to -1 in the condition that the pattern is not found in sequence
 		int index = -1;
 		for (int i = 0; i < sequence.length(); i++) {
+			//
 			if (index >= 0) {
 				break;
 			} else {
+				//
 				//this condition tests if sequence.charAt(i) == pattern.charAt(0)
 				if (sequence.charAt(i) == pattern.charAt(0)) {
-					//
-					//
 					//this sets a new counter called count to i + 1
 					//since we already matched sequence.charAt(i) to pattern.charAt(0). we will continue with the next letters in sequence and pattern
 					int count = i + 1;
@@ -126,13 +122,12 @@ public class Week4 {
 							break;
 						}
 					}
-					//
-					//
-					//
 				} else {
 					continue;
-				}	
+				}
+				//
 			}
+			//
 		}
 		
 		return index;
