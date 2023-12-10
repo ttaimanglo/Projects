@@ -81,55 +81,36 @@ public class Week4 {
 		
 		System.out.println();
 		System.out.println("---Problem 13---");
-		String pattern = "peter piper picked a peck of pickled peppers. A peck of pickled peppers Peter Piper picked."; //last index is 90; length is 91
-		int indexOfWord = wordSearch(pattern, "Peter Piper"); //returns 72
+		String sequence = "fjkdasfnjk ladsnjkadwnfindsifnadkjlsanfjkewhrfnqkewjfniuewqnfpqewinfiopCodejfoqwehnfopnfophidopfndsnopfnweqopifn";
+		String pattern = "Code";
+		int indexOfWord = wordSearch(sequence, pattern);
 		System.out.println(indexOfWord);
+		String wordFound = sequence.substring(indexOfWord, indexOfWord + pattern.length());
+		System.out.println(wordFound);
 		
 	}
 	
 	public static int wordSearch(String sequence, String pattern) {
-		//this will be the indexed position we return if we find the pattern
-		//it is currently set to -1 in the condition that the pattern is not found in sequence
 		int index = -1;
+		
 		for (int i = 0; i < sequence.length(); i++) {
-			//
 			if (index >= 0) {
 				break;
-			} else {
-				//
-				//this condition tests if sequence.charAt(i) == pattern.charAt(0)
-				if (sequence.charAt(i) == pattern.charAt(0)) {
-					//this sets a new counter called count to i + 1
-					//since we already matched sequence.charAt(i) to pattern.charAt(0). we will continue with the next letters in sequence and pattern
-					int count = i + 1;
-					//this inner for loop will run the instance the character at position i in sequence is equal to the first character in pattern
-					for (int j = 1; j < pattern.length(); j++) {
-						//this sets positionFound to i; we will use this to set the variable index to it when the whole pattern is matched
-						int positionFound = i;
-						if (sequence.charAt(count) == pattern.charAt(j) && j == pattern.length()-1) {
-							//this code block will run and set index to count
-							//if the character at position count in sequence is equal to the character at position j in pattern AND we are on the last iteration of the inner for loop
-							//this sets index variable to the position where we find the pattern
-							index = positionFound;
-						} else if (sequence.charAt(count) == pattern.charAt(j)) {
-							//this block will run if the character at position count in sequence is equal to the character at position j in pattern
-							//it will increase the count variable and continue with the loop until all characters are matched
-							count++;
-							continue;
-						} else {
-							//this block will run at the instance a character at position count in sequence is NOT equal to the character at position j in pattern
-							//it will break out of the inner for loop and continue with our main loop
-							break;
-						}
+			} else if (sequence.charAt(i) == pattern.charAt(0)) {
+				int count = i + 1;
+				for (int j = 1; j < pattern.length(); j++) {
+					if (sequence.charAt(count) == pattern.charAt(j) && j == pattern.length()-1) {
+						index = i;
+					} else if (sequence.charAt(count) == pattern.charAt(j)) {
+						count++;
+					} else {
+						break;
 					}
-				} else {
-					continue;
 				}
-				//
+			} else {
+				continue;
 			}
-			//
 		}
-		
 		return index;
 	}
 	
